@@ -1,3 +1,5 @@
+import calculator
+
 user_informations = [
     {
         "id" : 1,
@@ -16,8 +18,9 @@ def print_menu():
     print("***MENU***\n" 
       +"1 - Deposit Money... \n" 
       +"2 - Withdraw Money... \n" 
-      +"3 - Change My Id... \n" 
-      +"4 - Exit")
+      +"3 - Calculate Deposit Money \n"
+      +"4 - Change My Id... \n" 
+      +"5 - Exit")
 
 def withdraw_function(selectedUser):
     withdraw_value = int(input("Please Enter Your Value Withdraw "))
@@ -36,6 +39,20 @@ def change_information(selectedUser):
     selectedUser["id"] = int(input("choose id for change... "))
     print(str(selectedUser["name"])+ " id change successful... new id -> " + str(selectedUser["id"])  + " -> your balance is : " + str(selectedUser["balance"]))
 
+def calculator_function(choice):
+    first = int(input("Please Enter Your First Value : "))
+    second = int(input("Please Enter Your Second Value : "))
+
+    if choice == 1:
+        print(calculator.sum(first, second))
+    if choice == 2:
+        print(calculator.sub(first, second))
+    if choice == 3:
+        print(calculator.div(first, second))
+    if choice == 4:
+        print(calculator.mpy(first, second))
+    
+    
 
 
 user_validation = input("Please Enter Your Id for perfom operations... ")
@@ -65,9 +82,17 @@ while(instruction_choice != 4):
         withdraw_function(selected_user)
 
     if(instruction_choice == 3):
-        change_information(selected_user)
+        calculator.print_calc_menu()
+        calculation_choice = int(input("Please Enter Your Choice For Calculator Instruction : "))
+        if calculation_choice == 5:
+            print("Leaving Calculator...")
+        else :
+            calculator_function(calculation_choice)
 
     if(instruction_choice == 4):
+        change_information(selected_user)
+
+    if(instruction_choice == 5):
         print("Leaving our system thanks for choose us!")
         break
 
